@@ -19,3 +19,5 @@ cd $SCRATCH
 module purge
 module load blast+/2.2.29
 blastn -query $DATASET -db /work/databases/bio/ncbi-pre/nt  -max_target_seqs 1  -out $OUTFILE -num_threads=8 -outfmt "6 std staxids sscinames sskingdoms"
+
+sort -k1,1 -k12,12nr -k11,11n $OUTFILE | sort -u -k1,1 --merge >$OUTFILE.unique
