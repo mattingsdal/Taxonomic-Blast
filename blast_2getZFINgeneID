@@ -15,3 +15,4 @@ write.table(res,"my_ZFIN_genes.rdy",sep="\t",row.names=F,col.names=F,quote=F)
 q()
 n
 
+# use DAVID and ZFIN gene ID to test GO enrichement
