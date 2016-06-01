@@ -1,0 +1,7 @@
+cd /usit/abel/u1/mortema/database
+module load blast+/2.2.29
+blastn -query /usit/abel/u1/mortema/genome/test_genome.2nd/export.dna -db ~/database/ncbi_danio_rna.fa  -max_target_seqs 1 -out zebra.out -num_threads=8 -outfmt "6 std staxids sscinames sskingdoms"
+sort -k1,1 -k12,12nr -k11,11n zebra.out | sort -u -k1,1 --merge >zebra.out.unique
+awk -F"|" '{print $4'}  zebra.out.unique | sed 's/..$//' >mygenes
+grep -f mygenes refseq_2_ZFIN.txt | awk '{print $1}'>my_zfin_genes
+grep -f my_zfin_genes gene_association.zfin
